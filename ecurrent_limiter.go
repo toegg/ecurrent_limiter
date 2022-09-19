@@ -4,10 +4,13 @@ import (
 	"github.com/toegg/ecurrent_limiter/limiter"
 	"log"
 	"sync"
+	"github.com/go-redis/redis"
 )
 
 func main(){
-  	l, err := limiter.NewCache()
+	l, err := limiter.NewCache(&redis.Options{
+		Addr: "127.0.0.1:6379",
+	})
   	if err != nil{
   		log.Fatalf("RedisInit Err:%v", err)
 	}

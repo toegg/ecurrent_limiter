@@ -19,12 +19,8 @@ type Limiter struct {
 }
 
 //创建Redis连接
-func NewCache() (*Limiter, error){
-	addr := redisHost + ":" + redisPort
-	conn := redis.NewClient(&redis.Options{
-		Addr:addr,
-		Password: redisPassWord,
-	})
+func NewCache(options *redis.Options) (*Limiter, error){
+	conn := redis.NewClient(options)
 	_, err := conn.Ping().Result()
 	if err != nil{
 		return nil, err

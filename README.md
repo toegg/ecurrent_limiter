@@ -31,10 +31,15 @@
 #### 使用：
 ```go
 
-import "github.com/toegg/ecurrent_limiter/limiter"
+import (
+    "github.com/toegg/ecurrent_limiter/limiter"
+    "github.com/go-redis/redis"
+)
 
-//创建限流器
-l, err := limiter.NewCache()
+//创建限流器(换上自己addr)
+l, err := limiter.NewCache(&redis.Options{
+  		Addr: "127.0.0.1:6379",
+})
 //计数器并发安全限流
 res := l.SyncCountLimit(Api存储Redis的Key值, 限流个数, 限流单位时间)
 if res {

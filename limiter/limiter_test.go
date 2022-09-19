@@ -2,17 +2,22 @@ package limiter
 
 import (
 	"testing"
+	"github.com/go-redis/redis"
 )
 
 func TestNewCache(t *testing.T) {
-	_, err := NewCache()
+	_, err := NewCache(&redis.Options{
+		Addr: "127.0.0.1:6379",
+	})
 	if err != nil{
 		t.Errorf("NewCache is error: %v", err)
 	}
 }
 
 func TestLimiter_CountLimit(t *testing.T) {
-	l, _ := NewCache()
+	l, _ := NewCache(&redis.Options{
+		Addr: "127.0.0.1:6379",
+	})
 	var y,n int
 	for i:=0; i< 5; i++{
 		if l.CountLimit("TestCountLimit", 2, 5) {
@@ -27,14 +32,18 @@ func TestLimiter_CountLimit(t *testing.T) {
 }
 
 func BenchmarkLimiter_CountLimit(b *testing.B) {
-	l, _ := NewCache()
+	l, _ := NewCache(&redis.Options{
+		Addr: "127.0.0.1:6379",
+	})
 	for i := 0; i < b.N; i++ {
 		l.CountLimit("TestBCountLimit", 2, 5)
 	}
 }
 
 func TestLimiter_SyncCountLimit(t *testing.T) {
-	l, _ := NewCache()
+	l, _ := NewCache(&redis.Options{
+		Addr: "127.0.0.1:6379",
+	})
 	var y,n int
 	for i:=0; i< 5; i++{
 		if l.SyncCountLimit("TestSyncCountLimit", 2, 5) {
@@ -49,14 +58,18 @@ func TestLimiter_SyncCountLimit(t *testing.T) {
 }
 
 func BenchmarkLimiter_SyncCountLimit(b *testing.B) {
-	l, _ := NewCache()
+	l, _ := NewCache(&redis.Options{
+		Addr: "127.0.0.1:6379",
+	})
 	for i := 0; i < b.N; i++ {
 		l.CountLimit("TestBSyncCountLimit", 2, 5)
 	}
 }
 
 func TestLimiter_WindowLimit(t *testing.T) {
-	l, _ := NewCache()
+	l, _ := NewCache(&redis.Options{
+		Addr: "127.0.0.1:6379",
+	})
 	var y,n int
 	for i:=0; i< 5; i++{
 		if l.WindowLimit("TestWindowLimit", 2, 5) {
@@ -71,14 +84,18 @@ func TestLimiter_WindowLimit(t *testing.T) {
 }
 
 func BenchmarkLimiter_WindowLimit(b *testing.B) {
-	l, _ := NewCache()
+	l, _ := NewCache(&redis.Options{
+		Addr: "127.0.0.1:6379",
+	})
 	for i := 0; i < b.N; i++ {
 		l.CountLimit("TestBWindowLimit", 2, 5)
 	}
 }
 
 func TestLimiter_SyncWindowLimit(t *testing.T) {
-	l, _ := NewCache()
+	l, _ := NewCache(&redis.Options{
+		Addr: "127.0.0.1:6379",
+	})
 	var y,n int
 	for i:=0; i< 5; i++{
 		if l.SyncWindowLimit("TestSyncWindowLimit", 2, 5) {
@@ -94,7 +111,9 @@ func TestLimiter_SyncWindowLimit(t *testing.T) {
 }
 
 func BenchmarkLimiter_SyncWindowLimit(b *testing.B) {
-	l, _ := NewCache()
+	l, _ := NewCache(&redis.Options{
+		Addr: "127.0.0.1:6379",
+	})
 	for i := 0; i < b.N; i++ {
 		l.CountLimit("TestBSyncWindowLimit", 2, 5)
 	}
