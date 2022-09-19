@@ -1,4 +1,4 @@
-module ecurrent_limiter
+module github.com/toegg/ecurrent_limiter
 
 go 1.16
 

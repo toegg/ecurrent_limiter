@@ -1,7 +1,7 @@
 package main
 
 import (
-	"ecurrent_limiter/limiter"
+	"github.com/toegg/ecurrent_limiter/limiter"
 	"log"
 	"sync"
 )

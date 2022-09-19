@@ -1,7 +1,7 @@
 package limiter
 
 import (
-	"ecurrent_limiter/utils"
+	"github.com/toegg/ecurrent_limiter/utils"
 	"github.com/go-redis/redis"
 	"log"
 	"time"
