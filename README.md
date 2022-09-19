@@ -30,6 +30,9 @@
 
 #### 使用：
 ```go
+
+import "github.com/toegg/ecurrent_limiter/limiter"
+
 //创建限流器
 l, err := limiter.NewCache()
 //计数器并发安全限流
