@@ -7,13 +7,6 @@ import (
 	"time"
 )
 
-const(
-	//本地连接
-	redisHost = "127.0.0.1"
-	redisPort = "6379"
-	redisPassWord = ""
-)
-
 type Limiter struct {
 	conn *redis.Client
 }
